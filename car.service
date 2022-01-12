@@ -1,0 +1,13 @@
+[Unit]
+Description=Communication SPS Raspi
+After=network.target pigpiod.service
+Wants=pigpiod.service
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+WorkingDirectory=/home/pi/autorally
+ExecStart=/usr/bin/python3 /home/pi/autorally/communication.py
+[Install]
+WantedBy=multi-user.target

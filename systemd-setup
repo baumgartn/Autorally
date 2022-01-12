@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ ! -d "/usr/lib/systemd/system" ]; then
+    sudo mkdir /usr/lib/systemd/system
+fi
+
+SCRIPT_PATH=$(dirname `which $0`)
+
+echo "copying car.service to /usr/lib/systemd/system/car.service"
+sudo cp $SCRIPT_PATH/car.service /usr/lib/systemd/system/car.service
+
+echo "restarting systemd daemon"
+sudo systemctl daemon-reload
+
+echo "enabling car unit to start after reboot"
+sudo systemctl enable car
+
+echo "restarting car unit" #for changing the communication.py 
+sudo systemctl restart car
+
+echo "car unit status"
+sudo systemctl status car
