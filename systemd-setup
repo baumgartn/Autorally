@@ -18,5 +18,7 @@ sudo systemctl enable car
 echo "restarting car unit" #for changing the communication.py 
 sudo systemctl restart car
 
-echo "car unit status"
+echo "car unit status" # getting the status of the car
 sudo systemctl status car
+
+# sudo journalctl -fu #displays logs + updates
